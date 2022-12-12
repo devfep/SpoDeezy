@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"><head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SpoDeezy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="dashboard-body vh-100">
+
+<div th:replace="header::header"></div>
+<div th:if=${listOfPlaylists!=null} class="alert alert-success alert-dismissible fade show container d-flex justify-content-between spodeezy-alert" role="alert">
+    <div><strong>Wow! You've got good taste! </strong> Your Spotify playlists have been synced!</div>
+    <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+
+<div class="title-main text-center mx-auto mb-md-5 mt-5" >
+    <h3 class="title-style welcome-text" th:text="${'Welcome to SpoDeezy, ' + username}"></h3>
+</div>
+
+
+<div class="container py-2 mb-2 over flex-nowrap overflow-scroll">
+            <div class="card-deck d-flex spotify w-100">
+                <div class="container d-flex justify-content-center align-items-center vh-90">
+                    <div th:if="${listOfPlaylists==null}">
+                        <p class="text-center no-sync-text">No playlists synced yet</p>
+                        <button class="btn btn-primary" onclick="loginWithSpotify()"><i class="bi bi-spotify"></i>
+                            <span class="spotify-btn-text">Connect Your Spotify</span></button>
+                    </div>
+                </div>
+
+                    <div class="card col-md-4 m-5" th:each="playlist: ${listOfPlaylists}">
+                        <img class="card-img-top" th:src="${playlist.imageUrl}" alt="Playlist Image from Spotify">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <i class="bi bi-collection-play"></i>
+                                <h5 class="card-title text-capitalize align-self-center px-3" th:text="${playlist.playlistName}"></h5>
+                            </div>
+                            <div class="d-flex">
+                                <i class="bi bi-123"></i>
+                                <p class="card-text align-self-center px-3" th:text="${playlist.totalNumberOfTracks} + ' songs'" ></p>
+                            </div>
+                            <div class="d-flex">
+                                <i class="bi bi-clock"></i>
+                                <p class="card-text align-self-center px-3" th:text="'~' + ${playlist.totalNumberOfTracks*3}  + ' minutes'"></p>
+                            </div>
+                            <div class="backUpBtn d-flex justify-content-between">
+                                <a href="#" class="btn btn-warning align-self-end">Share With Friend</a>
+<!--                                <a href="#" class="btn btn-primary">Back up to Spodeezy</a>-->
+                                <form th:action="@{/dashboard/playlist-backup}" method="post" th:object="${playlistBackUp}">
+                                    <button class="btn btn-primary">Back up to Spodeezy</button>
+<!--                                    <label th:field="*{name}" for="name"></label>-->
+                                    <input type="hidden" th:value="${playlist.playlistName}" name="playlistName">
+                                    <input type="hidden" th:value="${playlist.imageUrl}" name="imageUrl">
+                                    <input type="hidden" th:value="${playlist.totalNumberOfTracks}" name="totalNumberOfTracks">
+                                    <input type="hidden" th:value="${playlist.spotifyPlaylistId}" name="spotifyPlaylistId">
+                                </form>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+<!--                                <small class="text-muted disp" th:text="${playlist.totalNumberOfTracks*3.5}"></small>-->
+                        </div>
+                    </div>
+
+
+            </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<script src="/assets/js/main.js"></script>
+<script th:inline="javascript">
+       const loginWithSpotify = () => {
+        fetch("http://localhost:8080/spotify/login")
+        .then((response) => response.text())
+        .then(response => {
+        window.location.replace(response);
+        })
+    }
+
+<!--    const spotifyBtn = document.querySelector('.spotify-connect');-->
+<!--    const display = document.querySelector('.disp');-->
+<!--    let timeBtnClicked;-->
+<!--    spotifyBtn.addEventListener('click', e => {-->
+<!--        timeBtnClicked = Date.now();-->
+
+<!--})-->
+
+<!--display.innerHTML = timeBtnClicked;-->
+</script>
+</body>
+</html>
