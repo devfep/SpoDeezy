@@ -35,23 +35,20 @@ public class DashboardController {
 
     protected  List<PlaylistItemDto> playlistsToBackUp = new ArrayList<>();
 
-//    @Autowired
-//    private PlaylistRepository playlistRepository;
 
 
     @RequestMapping("")
     public String displayDashboard(Model model, Authentication authentication) throws ExecutionException, JsonProcessingException, InterruptedException {
         model.addAttribute("username", authentication.getName());
         model.addAttribute("roles", authentication.getAuthorities().toString());
-        if (model.containsAttribute("playlistBackUp")){
-            return "dashboard.html";
-        }
-        model.addAttribute("playlistBackUp", new Playlist());
+//        if (model.containsAttribute("playlistBackUp")){
+//            return "dashboard.html";
+//        }
+//        model.addAttribute("playlistBackUp", new Playlist());
         try{
-
-            List<PlaylistItemDto> returnObj = playlistServiceImpl.getListOfCurrentUsersPlaylists_Async();
-            model.addAttribute("listOfPlaylists", returnObj);
-            playlistsToBackUp = returnObj;
+                List<PlaylistItemDto> returnObj = playlistServiceImpl.getListOfCurrentUsersPlaylists_Async();
+                model.addAttribute("listOfPlaylists", returnObj);
+                playlistsToBackUp = returnObj;
 
         } catch (Exception e){
             System.out.println(e.getMessage());
