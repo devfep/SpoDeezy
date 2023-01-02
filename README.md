@@ -78,7 +78,6 @@ Java, Springboot, PostgreSQL/MySQL, Docker, HTML/CSS, Bootstrap, Javascript, Thy
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
@@ -88,8 +87,6 @@ This is an example of how to list things you need to use the software and how to
  
 
 ### Installation
-
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
 1. Sign up for API Keys at:<br/>
   i. [Spotify For Developers](https://developer.spotify.com/dashboard/login)
@@ -122,10 +119,6 @@ _Below is an example of how you can instruct your audience on installing and set
 * Transfer your playlists to Deezer
 [![SpoDeezy Screen Shot][SpoDeezy-pmc-screenshot]](https://github.com/devfep/SpoDeezy)
 
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -184,8 +177,6 @@ Project Link: [https://github.com/devfep/SpoDeezy](https://github.com/devfep/Spo
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
-
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
 
 * [MIT License](https://choosealicense.com/licenses/mit/)
 * [Img Shields](https://shields.io)
