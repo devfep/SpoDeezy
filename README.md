@@ -61,7 +61,7 @@
 
 [![SpoDeezy Screen Shot][SpoDeezy-homepage-screenshot]](https://github.com/devfep/SpoDeezy)
 
-SpoDeezy is a fullstack web application that allows you to sync your playlists from Spotify Music to Spotify. As an add-on, you get to backup you playlists for ease of porting to Deezer (other streaming platforms).
+SpoDeezy is a fullstack web application that allows you to sync your playlists from Spotify Music to Spotify. As an add-on, you get to backup you playlists for ease of porting to Deezer (other streaming platforms in future plans).
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
